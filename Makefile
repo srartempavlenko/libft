@@ -1,7 +1,5 @@
 NAME	=	libft.a
 
-CC	=	gcc
-
 CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS	=	ft_isalpha.c \
@@ -44,7 +42,7 @@ OBJS	=	$(SRCS:.c=.o)
 		$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME):	$(OBJS)
-		ar -rc $(NAME) $(OBJS)
+		ar -rcs $(NAME) $(OBJS)
 
 RM	=	rm -f
 
