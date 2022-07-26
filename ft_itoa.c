@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	ft_itoalen(char **chrnum, int n)
+static int	ft_itoalen(char **chrnum, int n)
 {
 	int		len;
 	long	num;
