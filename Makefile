@@ -38,10 +38,12 @@ SRCS	=	ft_isalpha.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
-%.o : %.c
+HEAD	=	libft.h
+
+%.o : %.c $(HEAD)
 		$(CC) -c $(CFLAGS) $< -o $@
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(HEAD)
 		ar -rcs $(NAME) $(OBJS)
 
 RM	=	rm -f
