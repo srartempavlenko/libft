@@ -1,40 +1,54 @@
 #include "libft.h"
 
-char	*ft_itoacpy(char *dst, const char *src)
+int	ft_itoalen(char **chrnum, int n)
 {
-	size_t	i;
+	int		len;
+	long	num;
 
-	i = 0;
-	while (src[i] != '\0')
+	len = 0;
+	num = n;
+	if (num == 0)
+		len = 2;
+	if (num < 0 || num > 0)
 	{
-		dst[i] = src[i];
-		i++;
-		dst[i] = '\0';
+		while (num)
+		{
+			num /= 10;
+			len++;
+		}
+		len++;
+		num = n;
+		if (num < 0)
+			len++;
 	}
-	return (dst);
+	*chrnum = (char *)malloc(sizeof(char) * len);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
+	char	*chrnum;
+	int		len;
+	long	num;
 
-	str = (char *)malloc(sizeof(char) * 2);
-	if (str == NULL)
+	chrnum = NULL;
+	len = ft_itoalen(&chrnum, n);
+	if (chrnum == NULL)
 		return (NULL);
-	if (n == -2147483648)
-		return (ft_itoacpy(str, "-2147483648"));
-	if (n < 0)
+	num = n;
+	if (num == 0)
+		*(chrnum + 0) = '0';
+	if (num < 0)
 	{
-		str[0] = '-';
-		str[1] = '\0';
-		str = ft_strjoin(str, ft_itoa(-n));
+		*(chrnum + 0) = '-';
+		num = -num;
 	}
-	else if (n >= 10)
-		str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	else if (n < 10 && n >= 0)
+	*(chrnum + len - 1) = '\0';
+	while (num)
 	{
-		str[0] = n + '0';
-		str[1] = '\0';
+		*(chrnum + len - 2) = (num % 10) + '0';
+		num /= 10;
+		len--;
 	}
-	return (str);
+	return (chrnum);
 }
