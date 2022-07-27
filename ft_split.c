@@ -1,7 +1,7 @@
 #include "libft.h"
 
 static char	**ft_freesplit(char **str);
-static char	**splitsplit(char **str, const char *s, char c);
+static char	**ft_splitsplit(char **str, const char *s, char c);
 static int	ft_countsplit(char const *s, char c);
 
 static char	**ft_freesplit(char **str)
@@ -18,7 +18,7 @@ static char	**ft_freesplit(char **str)
 	return (NULL);
 }
 
-static char	**splitsplit(char **str, const char *s, char c)
+static char	**ft_splitsplit(char **str, const char *s, char c)
 {
 	int	count;
 	int	stchr;
@@ -76,5 +76,5 @@ char	**ft_split(char const *s, char c)
 	str = (char **)malloc(sizeof(char *) * ft_countsplit(s, c));
 	if (str == NULL)
 		return (NULL);
-	return (splitsplit(str, s, c));
+	return (ft_splitsplit(str, s, c));
 }
